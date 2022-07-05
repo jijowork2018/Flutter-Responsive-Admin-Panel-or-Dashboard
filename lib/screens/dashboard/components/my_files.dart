@@ -3,11 +3,11 @@ import 'package:admin/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:admin/models/MyFiles.dart';
 import '../../../constants.dart';
-import 'file_info_card.dart';
+import 'categories_card_widget.dart';
 
 class MyFiles extends StatelessWidget {
   const MyFiles({
-    Key? key,
+    Key key,
   }) : super(key: key);
 
   @override
@@ -54,7 +54,7 @@ class MyFiles extends StatelessWidget {
 
 class FileInfoCardGridView extends StatelessWidget {
   const FileInfoCardGridView({
-    Key? key,
+    Key key,
     this.crossAxisCount = 4,
     this.childAspectRatio = 1,
   }) : super(key: key);
@@ -74,7 +74,7 @@ class FileInfoCardGridView extends StatelessWidget {
         mainAxisSpacing: defaultPadding,
         childAspectRatio: childAspectRatio,
       ),
-      itemBuilder: (context, index) => FileInfoCard(info: demoMyFiles[index]),
+      itemBuilder: (context, index) => CategoriesCard(info: demoMyFiles[index]),
     );
   }
 }

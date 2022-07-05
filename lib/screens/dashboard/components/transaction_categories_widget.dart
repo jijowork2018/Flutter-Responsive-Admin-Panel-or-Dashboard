@@ -1,13 +1,15 @@
 import 'package:admin/models/MyFiles.dart';
 import 'package:admin/responsive.dart';
+import 'package:admin/screens/dashboard/components/recent_transactions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
-import 'file_info_card.dart';
+import '../../transactions/add_transactions_widget.dart';
+import 'categories_card_widget.dart';
 
-class MyFiles extends StatelessWidget {
-  const MyFiles({
-    Key? key,
+class TransactionCategoriesWidget extends StatelessWidget {
+  const TransactionCategoriesWidget({
+    Key key,
   }) : super(key: key);
 
   @override
@@ -19,7 +21,7 @@ class MyFiles extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "My Files",
+              "Categories",
               style: Theme.of(context).textTheme.subtitle1,
             ),
             ElevatedButton.icon(
@@ -30,7 +32,21 @@ class MyFiles extends StatelessWidget {
                       defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () async {
+                await showModalBottomSheet(
+                  isScrollControlled: true,
+                  context: context,
+                  builder: (context) {
+                    return Padding(
+                      padding: MediaQuery.of(context).viewInsets,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.6,
+                        child: AddTransactionsWidget(),
+                      ),
+                    );
+                  },
+                );
+              },
               icon: Icon(Icons.add),
               label: Text("Add New"),
             ),
@@ -54,7 +70,7 @@ class MyFiles extends StatelessWidget {
 
 class FileInfoCardGridView extends StatelessWidget {
   const FileInfoCardGridView({
-    Key? key,
+    Key key,
     this.crossAxisCount = 4,
     this.childAspectRatio = 1,
   }) : super(key: key);
@@ -74,7 +90,7 @@ class FileInfoCardGridView extends StatelessWidget {
         mainAxisSpacing: defaultPadding,
         childAspectRatio: childAspectRatio,
       ),
-      itemBuilder: (context, index) => FileInfoCard(info: demoMyFiles[index]),
+      itemBuilder: (context, index) => CategoriesCard(info: demoMyFiles[index]),
     );
   }
 }

@@ -1,10 +1,15 @@
+import 'package:admin/screens/dashboard/components/storage_details.dart';
+import 'package:admin/screens/expenses/expenses_screen.dart';
+import 'package:admin/screens/incomes/incomes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
-    Key? key,
+    Key key,
+    this.onPageChanged,
   }) : super(key: key);
+  final Function(int) onPageChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -17,32 +22,17 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             title: "Dashboard",
             svgSrc: "assets/icons/menu_dashbord.svg",
-            press: () {},
+            press: () => onPageChanged(0),
           ),
           DrawerListTile(
-            title: "Transaction",
+            title: "Incomes",
             svgSrc: "assets/icons/menu_tran.svg",
-            press: () {},
+            press: () => onPageChanged(1),
           ),
           DrawerListTile(
-            title: "Task",
-            svgSrc: "assets/icons/menu_task.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Documents",
-            svgSrc: "assets/icons/menu_doc.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Store",
-            svgSrc: "assets/icons/menu_store.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Notification",
-            svgSrc: "assets/icons/menu_notification.svg",
-            press: () {},
+            title: "Expenses",
+            svgSrc: "assets/icons/menu_tran.svg",
+            press: () => onPageChanged(2),
           ),
           DrawerListTile(
             title: "Profile",
@@ -62,11 +52,11 @@ class SideMenu extends StatelessWidget {
 
 class DrawerListTile extends StatelessWidget {
   const DrawerListTile({
-    Key? key,
+    Key key,
     // For selecting those three line once press "Command+D"
-    required this.title,
-    required this.svgSrc,
-    required this.press,
+    this.title,
+    this.svgSrc,
+    this.press,
   }) : super(key: key);
 
   final String title, svgSrc;

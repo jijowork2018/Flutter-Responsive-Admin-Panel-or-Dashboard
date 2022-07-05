@@ -1,3 +1,5 @@
+import 'package:admin/auth/auth_util.dart';
+import 'package:admin/auth/firebase_user_provider.dart';
 import 'package:admin/controllers/MenuController.dart';
 import 'package:admin/responsive.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +10,11 @@ import '../../../constants.dart';
 
 class Header extends StatelessWidget {
   const Header({
-    Key? key,
+    Key key,
+    this.pageName
   }) : super(key: key);
+
+  final String pageName;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class Header extends StatelessWidget {
           ),
         if (!Responsive.isMobile(context))
           Text(
-            "Dashboard",
+            pageName ?? "Dashboard",
             style: Theme.of(context).textTheme.headline6,
           ),
         if (!Responsive.isMobile(context))
@@ -36,7 +41,7 @@ class Header extends StatelessWidget {
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
-    Key? key,
+    Key key,
   }) : super(key: key);
 
   @override
@@ -44,12 +49,12 @@ class ProfileCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(left: defaultPadding),
       padding: EdgeInsets.symmetric(
-        horizontal: defaultPadding,
+        horizontal: defaultPadding/2,
         vertical: defaultPadding / 2,
       ),
       decoration: BoxDecoration(
         color: secondaryColor,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        borderRadius: const BorderRadius.all(Radius.circular(25)),
         border: Border.all(color: Colors.white10),
       ),
       child: Row(
@@ -62,7 +67,7 @@ class ProfileCard extends StatelessWidget {
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              child: Text("Angelina Jolie"),
+              child: Text(currentUser.user.displayName ?? 'user'),
             ),
           Icon(Icons.keyboard_arrow_down),
         ],
@@ -73,7 +78,7 @@ class ProfileCard extends StatelessWidget {
 
 class SearchField extends StatelessWidget {
   const SearchField({
-    Key? key,
+    Key key,
   }) : super(key: key);
 
   @override

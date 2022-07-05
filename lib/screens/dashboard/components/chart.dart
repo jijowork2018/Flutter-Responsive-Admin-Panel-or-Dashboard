@@ -5,7 +5,7 @@ import '../../../constants.dart';
 
 class Chart extends StatelessWidget {
   const Chart({
-    Key? key,
+    Key key,
   }) : super(key: key);
 
   @override
@@ -29,7 +29,7 @@ class Chart extends StatelessWidget {
                 SizedBox(height: defaultPadding),
                 Text(
                   "29.1",
-                  style: Theme.of(context).textTheme.headline4!.copyWith(
+                  style: Theme.of(context).textTheme.headline4.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                         height: 0.5,
@@ -49,7 +49,7 @@ List<PieChartSectionData> paiChartSelectionDatas = [
   PieChartSectionData(
     color: primaryColor,
     value: 25,
-    showTitle: false,
+    showTitle: true,
     radius: 25,
   ),
   PieChartSectionData(

@@ -1,11 +1,11 @@
 import 'package:admin/responsive.dart';
-import 'package:admin/screens/dashboard/components/my_fields.dart';
+import 'package:admin/screens/dashboard/components/transaction_categories_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import 'components/header.dart';
 
-import 'components/recent_files.dart';
+import 'components/recent_transactions.dart';
 import 'components/storage_details.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -26,12 +26,12 @@ class DashboardScreen extends StatelessWidget {
                   flex: 5,
                   child: Column(
                     children: [
-                      MyFiles(),
+                      TransactionCategoriesWidget(),
                       SizedBox(height: defaultPadding),
-                      RecentFiles(),
+                      RecentTransactions(),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) StarageDetails(),
+                      if (Responsive.isMobile(context)) StorageDetails(),
                     ],
                   ),
                 ),
@@ -41,7 +41,7 @@ class DashboardScreen extends StatelessWidget {
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,
-                    child: StarageDetails(),
+                    child: StorageDetails(),
                   ),
               ],
             )
